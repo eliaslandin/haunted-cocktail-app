@@ -1,6 +1,6 @@
 import { useEffect, useState } from "haunted";
 
-const apiRoot = "https://www.thecocktaildb.com/api/json/v1/1/search.php";
+const API_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php";
 
 type Recipe = {
   strDrink: string;
@@ -15,7 +15,7 @@ export const useRecipes = (query?: string) => {
     setLoading(true);
     setError(null);
 
-    let url = apiRoot;
+    let url = API_URL;
     if (query) {
       url += `?s=${query}`;
     } else {
