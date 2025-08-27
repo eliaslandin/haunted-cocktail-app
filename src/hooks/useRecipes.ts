@@ -1,10 +1,8 @@
 import { useEffect, useState } from "haunted";
+import type { Recipe } from "../utils/types";
+import { parseRecipes } from "../utils/utils";
 
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php";
-
-type Recipe = {
-  strDrink: string;
-};
 
 export const useRecipes = (query?: string) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -33,8 +31,9 @@ export const useRecipes = (query?: string) => {
       }
 
       const data = await res.json();
-      console.log(data);
-      setRecipes(typeof data.drinks === "object" ? data.drinks : []);
+
+      const parsedRecipes = parseRecipes(data);
+      setRecipes(parsedRecipes);
     } catch (error: any) {
       if (error.name === "AbortError") {
         return;

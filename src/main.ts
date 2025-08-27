@@ -7,7 +7,7 @@ function App() {
 
   return html` <main>
     <h2>App</h2>
-    ${recipes.map((recipe) => html` <p>${recipe.strDrink}</p> `)}
+    ${recipes.map((recipe) => html` <p>${recipe.ingredients.join(", ")}</p> `)}
   </main>`;
 }
 
