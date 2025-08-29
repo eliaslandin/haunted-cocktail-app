@@ -1,8 +1,14 @@
 import { useRecipes } from "../hooks/useRecipes";
-import { html, component } from "haunted";
+import { html, component, useEffect } from "haunted";
+import { useToast } from "../hooks/useToast";
 
 export const InnerApp = () => {
   const { recipes } = useRecipes();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    toast.success("Testing");
+  }, []);
 
   return html`
     <main>
