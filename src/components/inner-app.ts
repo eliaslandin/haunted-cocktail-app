@@ -1,26 +1,32 @@
 import { useRecipes } from "../hooks/useRecipes";
-import { html, component, useState } from "haunted";
+import { html, component, useState, useEffect } from "haunted";
 import "./recipe-card.ts";
 import "./search-bar.ts";
 import "./shopping-list.ts";
+import "./recipe-list.ts";
+import { useToast } from "../hooks/useToast.ts";
 
-export const InnerApp = () => {
+export const InnerApp = (element: HTMLElement) => {
   const [searchTerm, setSearchTerm] = useState<string>();
   const { recipes } = useRecipes(searchTerm);
+  const toast = useToast(element);
+
+  useEffect(() => {
+    if (recipes.length === 0 && searchTerm) {
+      toast.error("No results found");
+    }
+
+    if (recipes.length > 0 && searchTerm) {
+      toast.success("Here are the results");
+    }
+  }, [recipes]);
 
   return html`
     <main>
       <div class="column">
         <div>
           <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
-          <ul>
-            ${recipes.map(
-              (recipe) =>
-                html`<li>
-                  <recipe-card .recipe=${recipe}></recipe-card>
-                </li> `,
-            )}
-          </ul>
+          <recipe-list .recipes=${recipes}></recipe-list>
         </div>
         <shopping-list></shopping-list>
       </div>
@@ -32,6 +38,7 @@ export const InnerApp = () => {
         flex-direction: column;
         align-items: center;
         padding: 20px;
+        box-sizing: border-box;
       }
 
       .column {
@@ -41,13 +48,8 @@ export const InnerApp = () => {
         gap: 34px;
       }
 
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+      .column > div {
+        flex: 1;
       }
     </style>
   `;

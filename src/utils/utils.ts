@@ -2,7 +2,7 @@ import type { TheCocktailDbResponse, Recipe } from "./types";
 
 export const parseRecipes = (data: TheCocktailDbResponse): Recipe[] => {
   // Return empty array if no drinks were found
-  if (typeof data.drinks === "string" || typeof data.drinks === "undefined") {
+  if (!data.drinks || typeof data.drinks === "string") {
     return [];
   }
 
