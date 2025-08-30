@@ -1,10 +1,9 @@
-import { component, html, type StateUpdater } from "haunted";
+import { component, html } from "haunted";
 import { useToast } from "../hooks/useToast";
+import { useRecipes } from "../hooks/useRecipes";
 
-export const SearchBar = (
-  element: HTMLElement & { setSearchTerm: StateUpdater<string | undefined> },
-) => {
-  const { setSearchTerm } = element;
+export const SearchBar = (element: HTMLElement) => {
+  const { searchRecipes, query } = useRecipes();
   const toast = useToast(element);
 
   const handleSearch = (e: SubmitEvent) => {
@@ -14,13 +13,17 @@ export const SearchBar = (
 
     const searchTerm = formData.get("query") as string;
 
+    if (searchTerm === query) {
+      return;
+    }
+
     if (!searchTerm) {
-      setSearchTerm(undefined);
+      searchRecipes("");
       return;
     }
 
     toast.info("Searching...");
-    setSearchTerm(searchTerm);
+    searchRecipes(searchTerm);
   };
 
   return html`

@@ -2,8 +2,8 @@ import { component, html } from "haunted";
 import type { Recipe } from "../utils/types";
 import { useRecipes } from "../hooks/useRecipes";
 
-export const RecipeList = ({ recipes }: { recipes: Recipe[] }) => {
-  const { error, loading } = useRecipes();
+export const RecipeList = () => {
+  const { recipes, error, loading } = useRecipes();
   let renderMessage;
   if (error) {
     renderMessage = error;

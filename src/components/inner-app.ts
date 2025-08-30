@@ -1,5 +1,5 @@
 import { useRecipes } from "../hooks/useRecipes";
-import { html, component, useState, useEffect } from "haunted";
+import { html, component, useEffect } from "haunted";
 import "./recipe-card.ts";
 import "./search-bar.ts";
 import "./shopping-list.ts";
@@ -7,16 +7,15 @@ import "./recipe-list.ts";
 import { useToast } from "../hooks/useToast.ts";
 
 export const InnerApp = (element: HTMLElement) => {
-  const [searchTerm, setSearchTerm] = useState<string>();
-  const { recipes } = useRecipes(searchTerm);
+  const { recipes, query } = useRecipes();
   const toast = useToast(element);
 
   useEffect(() => {
-    if (recipes.length === 0 && searchTerm) {
+    if (recipes.length === 0 && query) {
       toast.error("No results found");
     }
 
-    if (recipes.length > 0 && searchTerm) {
+    if (recipes.length > 0 && query) {
       toast.success("Here are the results");
     }
   }, [recipes]);
@@ -31,7 +30,7 @@ export const InnerApp = (element: HTMLElement) => {
         </header>
         <div class="flex-container">
           <div>
-            <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
+            <search-bar></search-bar>
             <recipe-list .recipes=${recipes}></recipe-list>
           </div>
           <shopping-list></shopping-list>

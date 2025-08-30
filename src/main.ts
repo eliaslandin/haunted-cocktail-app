@@ -14,7 +14,18 @@ function App() {
           .render=${(c: ShoppingListContextType) => {
             // Make sure context is available before rendering inner app
             if (c) {
-              return html`<inner-app></inner-app>`;
+              return html`
+                <recipes-wrapper>
+                  <recipes-consumer
+                    .render=${(c: ShoppingListContextType) => {
+                      // Make sure context is available before rendering inner app
+                      if (c) {
+                        return html`<inner-app></inner-app>`;
+                      }
+                    }}
+                  ></recipes-consumer>
+                </recipes-wrapper>
+              `;
             }
           }}
         ></shopping-list-consumer>

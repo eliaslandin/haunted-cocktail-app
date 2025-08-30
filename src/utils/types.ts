@@ -6,6 +6,14 @@ export type Recipe = {
   ingredients: string[];
 };
 
+export type RecipesContextType = {
+  recipes: Recipe[];
+  loading: boolean;
+  error: string | null;
+  query?: string;
+  searchRecipes: (searchTerm: string) => void;
+};
+
 export type TheCocktailDbResponse = {
   drinks: any[] | string | undefined;
 };
