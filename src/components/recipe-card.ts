@@ -45,7 +45,7 @@ export const RecipeCard = (element: HTMLElement & { recipe: Recipe }) => {
       .container {
         display: flex;
         gap: 26px;
-        border-radius: 4px;
+        border-radius: var(--radius-sm);
         background: white;
         padding: 16px;
         box-shadow: var(--shadow);
@@ -54,7 +54,7 @@ export const RecipeCard = (element: HTMLElement & { recipe: Recipe }) => {
       .image-container {
         width: 204px;
         height: 204px;
-        border-radius: 12px;
+        border-radius: var(--radius-md);
         overflow: hidden;
       }
 
@@ -113,7 +113,7 @@ export const RecipeCard = (element: HTMLElement & { recipe: Recipe }) => {
         margin: 0;
         font-size: 1.375rem;
         font-weight: normal;
-        color: var(--muted);
+        color: var(--secondary);
       }
 
       h3 {

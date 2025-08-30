@@ -6,7 +6,8 @@
   --muted: #8b8484;
   --border: #c9c9c9;
   --shadow: 0 0 18px rgba(0, 0, 0, 0.12);
-  --radius-sm: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
   --text-lg: 1.375rem;
   --text-base: 1.125rem;
 

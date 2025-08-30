@@ -47,7 +47,7 @@ export const SearchBar = (
         box-shadow: var(--shadow);
       }
 
-      input:placeholder {
+      input::placeholder {
         color: var(--muted);
       }
 
