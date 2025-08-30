@@ -27,3 +27,10 @@ export type Toast = {
 export type ToastContextType = {
   toast: Toast;
 };
+
+export type ShoppingListContextType = {
+  addToShoppingList: (recipe: Recipe) => void;
+  removeFromShoppingList: (id: string) => void;
+  addedRecipes: Recipe[];
+  addedIngredients: string[];
+};

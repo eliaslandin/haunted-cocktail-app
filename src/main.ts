@@ -1,21 +1,21 @@
 import "./style.css";
 import { html, component } from "haunted";
 import "./components/inner-app.ts";
-import "./components/toast-provider.ts";
-import type { ToastContextType } from "./utils/types.ts";
+import "./components/shopping-list-provider.ts";
+import type { ShoppingListContextType } from "./utils/types.ts";
 
 function App() {
   return html`
-    <toast-wrapper>
-      <toast-consumer
-        .render=${(c: ToastContextType) => {
+    <shopping-list-wrapper>
+      <shopping-list-consumer
+        .render=${(c: ShoppingListContextType) => {
           // Make sure context is available before rendering inner app
           if (c) {
             return html`<inner-app></inner-app>`;
           }
         }}
-      ></toast-consumer>
-    </toast-wrapper>
+      ></shopping-list-consumer>
+    </shopping-list-wrapper>
   `;
 }
 

@@ -31,3 +31,17 @@ export const parseRecipes = (data: TheCocktailDbResponse): Recipe[] => {
 
   return parsedRecipes;
 };
+
+export const getUniqueIngredients = (recipes: Recipe[]): string[] => {
+  let uniqueIngredients: string[] = [];
+
+  for (const recipe of recipes) {
+    for (const ingredient of recipe.ingredients) {
+      if (uniqueIngredients.includes(ingredient)) {
+        uniqueIngredients.push(ingredient);
+      }
+    }
+  }
+
+  return uniqueIngredients;
+};
