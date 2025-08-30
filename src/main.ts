@@ -14,13 +14,13 @@ function App() {
       <shopping-list-wrapper>
         <shopping-list-consumer
           .render=${(c: ShoppingListContextType) => {
-            // Make sure context is available before rendering inner app
+            // Make sure haunted doesn't render children before populating contexts
             if (c) {
               return html`
                 <recipes-wrapper>
                   <recipes-consumer
                     .render=${(c: RecipesContextType) => {
-                      // Make sure context is available before rendering inner app
+                      // Make sure haunted doesn't render children before populating contexts
                       if (c) {
                         return html`<inner-app></inner-app>`;
                       }
