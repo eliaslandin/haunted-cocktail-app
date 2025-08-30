@@ -1,7 +1,20 @@
 import { component, html } from "haunted";
 import type { Recipe } from "../utils/types";
+import { useShoppingList } from "../hooks/useShoppingList";
+import { useToast } from "../hooks/useToast";
 
-export const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
+export const RecipeCard = (element: HTMLElement & { recipe: Recipe }) => {
+  const { recipe } = element;
+  const { addToShoppingList, addedRecipes } = useShoppingList();
+  const toast = useToast(element);
+
+  const handleClick = () => {
+    if (!addedRecipes.includes(recipe)) {
+      addToShoppingList(recipe);
+      toast.success(`${recipe.name} added to shopping list`);
+    }
+  };
+
   return html`
     <div class="container">
       <div class="image-container">
@@ -13,7 +26,12 @@ export const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
             <icon-component class="icon" .type=${"cocktail"}></icon-component>
             <h2>${recipe.name}</h2>
           </div>
-          <button>Buy</button>
+          <button
+            @click=${handleClick}
+            ?disabled=${addedRecipes.includes(recipe)}
+          >
+            ${addedRecipes.includes(recipe) ? "Added" : "Buy"}
+          </button>
         </div>
         <div class="divider"></div>
         <div class="desciption">
@@ -117,6 +135,11 @@ export const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 
       button:hover {
         background: var(--primary-dark);
+      }
+
+      button:disabled {
+        background: var(--muted);
+        cursor: default;
       }
 
       .icon {
