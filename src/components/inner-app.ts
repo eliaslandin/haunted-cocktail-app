@@ -1,8 +1,8 @@
 import { useRecipes } from "../hooks/useRecipes";
-import { html, component, useEffect } from "haunted";
+import { html, component } from "haunted";
 import "./recipe-card.ts";
 
-export const InnerApp = (element: HTMLElement) => {
+export const InnerApp = () => {
   const { recipes } = useRecipes();
 
   return html`
