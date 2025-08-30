@@ -93,7 +93,7 @@ export const ShoppingList = (element: HTMLElement) => {
         flex-direction: column;
         gap: 26px;
         overflow-y: auto;
-        max-height: calc(100vh - 200px);
+        max-height: calc(100vh - 300px);
       }
 
       h2 {
