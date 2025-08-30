@@ -72,6 +72,9 @@ export const ToastWrapper = (element: HTMLElement) => {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        width: 100%;
+        max-width: 360px;
+        z-index: 9999;
       }
 
       .card {
@@ -82,8 +85,9 @@ export const ToastWrapper = (element: HTMLElement) => {
         background: white;
         border-radius: 12px;
         overflow: hidden;
+        width: 100%;
         padding: 16px 20px;
-        min-width: 280px;
+        box-sizing: border-box;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.18);
       }
 

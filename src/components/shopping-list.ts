@@ -180,6 +180,12 @@ export const ShoppingList = (element: HTMLElement) => {
         color: var(--border);
         cursor: default;
       }
+
+      @media screen and (max-width: 900px) {
+        :host {
+          max-width: 100%;
+        }
+      }
     </style>
   `;
 };

@@ -51,6 +51,12 @@ export const InnerApp = (element: HTMLElement) => {
       .column > div {
         flex: 1;
       }
+
+      @media screen and (max-width: 900px) {
+        .column {
+          flex-direction: column;
+        }
+      }
     </style>
   `;
 };
