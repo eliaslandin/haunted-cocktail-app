@@ -37,7 +37,7 @@ export const getUniqueIngredients = (recipes: Recipe[]): string[] => {
 
   for (const recipe of recipes) {
     for (const ingredient of recipe.ingredients) {
-      if (uniqueIngredients.includes(ingredient)) {
+      if (!uniqueIngredients.includes(ingredient)) {
         uniqueIngredients.push(ingredient);
       }
     }
