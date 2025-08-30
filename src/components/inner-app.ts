@@ -2,9 +2,9 @@ import { useRecipes } from "../hooks/useRecipes";
 import { html, component, useEffect } from "haunted";
 import { useToast } from "../hooks/useToast";
 
-export const InnerApp = () => {
+export const InnerApp = (element: HTMLElement) => {
   const { recipes } = useRecipes();
-  const { toast } = useToast();
+  const { toast } = useToast(element);
 
   useEffect(() => {
     toast.success("Testing");

@@ -24,9 +24,12 @@ export type Toast = {
   info: (message: string) => void;
 };
 
-export type ToastContextType = {
-  toast: Toast;
+export type ToastEventPayload = {
+  message: string;
+  type: ToastNotificationType;
 };
+
+export type ToastEvent = CustomEvent<ToastEventPayload>;
 
 export type ShoppingListContextType = {
   addToShoppingList: (recipe: Recipe) => void;
