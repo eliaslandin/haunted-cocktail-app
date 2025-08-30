@@ -6,7 +6,7 @@ import type {
 } from "../utils/types";
 
 // Time to display the notification in milli seconds
-const DISPLAY_TIME = 50000;
+const DISPLAY_TIME = 5000;
 
 export const ToastWrapper = (element: HTMLElement) => {
   const [notifications, setNotifications] = useState<ToastNotification[]>([]);
