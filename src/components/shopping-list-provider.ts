@@ -1,4 +1,4 @@
-import { component, createContext, html, useEffect, useState } from "haunted";
+import { component, createContext, html, useMemo, useState } from "haunted";
 import type { Recipe, ShoppingListContextType } from "../utils/types";
 import { getUniqueIngredients } from "../utils/utils";
 
@@ -10,7 +10,6 @@ customElements.define("shopping-list-consumer", ShoppingListContext.Consumer);
 
 export const ShoppingListWrapper = () => {
   const [addedRecipes, setAddedRecipes] = useState<Recipe[]>([]);
-  const [addedIngredients, setAddedIngredients] = useState<string[]>([]);
 
   const removeFromShoppingList = (id: string) => {
     setAddedRecipes((prev) => prev.filter((r) => r.id !== id));
@@ -20,8 +19,8 @@ export const ShoppingListWrapper = () => {
     setAddedRecipes((prev) => [...prev, recipe]);
   };
 
-  useEffect(() => {
-    setAddedIngredients(getUniqueIngredients(addedRecipes));
+  const addedIngredients: string[] = useMemo(() => {
+    return getUniqueIngredients(addedRecipes);
   }, [addedRecipes]);
 
   const providerValue: ShoppingListContextType = {
