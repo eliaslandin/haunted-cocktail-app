@@ -2,15 +2,22 @@ import { component, html } from "haunted";
 import { useShoppingList } from "../hooks/useShoppingList";
 import { useToast } from "../hooks/useToast";
 import type { Recipe } from "../utils/types";
+import { usePrint } from "../hooks/usePrint";
 
 export const ShoppingList = (element: HTMLElement) => {
   const { addedRecipes, addedIngredients, removeFromShoppingList } =
     useShoppingList();
   const toast = useToast(element);
+  const print = usePrint();
 
   const handleRemove = (recipe: Recipe) => {
     removeFromShoppingList(recipe.id);
     toast.success(`Removed ${recipe.name} from shopping list`);
+  };
+
+  const handlePrint = () => {
+    const ingredientsEl = element.shadowRoot!.querySelector("#ingredients")!;
+    print(ingredientsEl);
   };
 
   return html`
@@ -27,7 +34,10 @@ export const ShoppingList = (element: HTMLElement) => {
                   (recipe) => html`
                     <li>
                       ${recipe.name}
-                      <button @click=${() => handleRemove(recipe)}>
+                      <button
+                        class="remove-btn"
+                        @click=${() => handleRemove(recipe)}
+                      >
                         <icon-component
                           class="icon"
                           .type=${"x"}
@@ -38,7 +48,7 @@ export const ShoppingList = (element: HTMLElement) => {
                 )}
           </ul>
         </div>
-        <div>
+        <div id="ingredients">
           <h3>Ingredients</h3>
           <ul>
             ${addedIngredients.length === 0
@@ -49,6 +59,13 @@ export const ShoppingList = (element: HTMLElement) => {
           </ul>
         </div>
       </div>
+      <button
+        class="print-btn"
+        @click=${handlePrint}
+        ?disabled=${addedIngredients.length === 0}
+      >
+        Print Ingredients
+      </button>
     </div>
 
     <style>
@@ -117,7 +134,7 @@ export const ShoppingList = (element: HTMLElement) => {
         font-size: var(--text-base);
       }
 
-      button {
+      .remove-btn {
         margin: 0;
         padding: 0;
         background: transparent;
@@ -139,6 +156,29 @@ export const ShoppingList = (element: HTMLElement) => {
         width: 18px;
         height: 18px;
         color: var(--muted);
+      }
+
+      .print-btn {
+        border: 1px solid var(--primary);
+        outline: none;
+        color: var(--primary);
+        background: transparent;
+        border-radius: 9999px;
+        padding: 8px;
+        width: 100%;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .print-btn:hover {
+        border-color: var(--primary-dark);
+        background: var(--background);
+      }
+
+      .print-btn:disabled {
+        border-color: var(--border);
+        color: var(--border);
+        cursor: default;
       }
     </style>
   `;
