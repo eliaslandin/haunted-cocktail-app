@@ -10,7 +10,6 @@ export const SearchBar = (element: HTMLElement) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget as HTMLFormElement);
-
     const searchTerm = formData.get("query") as string;
 
     if (searchTerm === query) {
