@@ -31,6 +31,7 @@ export const InnerApp = () => {
       }
 
       .column {
+        width: 100%;
         max-width: 1240px;
       }
 
