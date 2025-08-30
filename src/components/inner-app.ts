@@ -1,13 +1,16 @@
 import { useRecipes } from "../hooks/useRecipes";
-import { html, component } from "haunted";
+import { html, component, useState } from "haunted";
 import "./recipe-card.ts";
+import "./search-bar.ts";
 
 export const InnerApp = () => {
-  const { recipes } = useRecipes();
+  const [searchTerm, setSearchTerm] = useState<string>();
+  const { recipes } = useRecipes(searchTerm);
 
   return html`
     <main>
       <div class="column">
+        <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
         <ul>
           ${recipes.map(
             (recipe) =>
