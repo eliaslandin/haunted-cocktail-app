@@ -3,6 +3,7 @@ import { html, component } from "haunted";
 import "./components/inner-app.ts";
 import "./components/shopping-list-provider.ts";
 import "./components/toast-wrapper.ts";
+import "./components/icon-component.ts";
 import type { ShoppingListContextType } from "./utils/types.ts";
 
 function App() {

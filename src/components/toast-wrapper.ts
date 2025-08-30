@@ -6,7 +6,7 @@ import type {
 } from "../utils/types";
 
 // Time to display the notification in milli seconds
-const DISPLAY_TIME = 4000;
+const DISPLAY_TIME = 50000;
 
 export const ToastWrapper = (element: HTMLElement) => {
   const [notifications, setNotifications] = useState<ToastNotification[]>([]);
@@ -43,12 +43,55 @@ export const ToastWrapper = (element: HTMLElement) => {
   }, []);
 
   return html`
-    <div>
+    <div class="container">
       ${notifications.map(
-        (notification) => html` <p>${notification.message}</p> `,
+        (notification) => html`
+          <div class="card">
+            <icon-component
+              class="icon"
+              .type=${notification.type}
+            ></icon-component>
+            ${notification.message}
+          </div>
+        `,
       )}
-      <slot></slot>
     </div>
+    <slot></slot>
+
+    <style>
+      :host {
+        position: absolute;
+        inset: 0;
+        z-index: 9999;
+      }
+
+      .container {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        padding: 16px 20px;
+        min-width: 280px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.18);
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+    </style>
   `;
 };
 

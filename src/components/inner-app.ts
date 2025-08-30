@@ -8,6 +8,10 @@ export const InnerApp = (element: HTMLElement) => {
 
   useEffect(() => {
     toast.success("Testing");
+
+    setTimeout(() => {
+      toast.error("Testing2");
+    }, 2000);
   }, []);
 
   return html`
