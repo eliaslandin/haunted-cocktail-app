@@ -16,7 +16,9 @@ export const ShoppingListWrapper = () => {
   };
 
   const addToShoppingList = (recipe: Recipe) => {
-    setAddedRecipes((prev) => [...prev, recipe]);
+    if (!addedRecipes.includes(recipe)) {
+      setAddedRecipes((prev) => [...prev, recipe]);
+    }
   };
 
   const addedIngredients: string[] = useMemo(() => {
