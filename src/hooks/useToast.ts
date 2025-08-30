@@ -23,7 +23,5 @@ export const useToast = (element: HTMLElement) => {
     },
   };
 
-  return {
-    toast,
-  };
+  return toast;
 };
