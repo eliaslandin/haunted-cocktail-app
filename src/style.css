@@ -1,9 +1,11 @@
 :root {
   --primary: #646cff;
+  --primary-dark: #444bd3;
   --background: #f8f8ff;
   --secondary: #666666;
   --muted: #8b8484;
   --border: #c9c9c9;
+  --shadow: 0 0 18px rgba(0, 0, 0, 0.12);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -27,7 +29,19 @@ body {
 
 h1 {
   font-size: 3.2rem;
-  line-height: 1.1;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: normal;
+  line-height: 1;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: normal;
+  line-height: 1;
 }
 
 button {
@@ -42,7 +56,7 @@ button {
 }
 
 button:hover {
-  border-color: #444bd3;
+  border-color: var(--primary-dark);
 }
 
 button:focus,

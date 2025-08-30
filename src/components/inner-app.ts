@@ -1,26 +1,45 @@
 import { useRecipes } from "../hooks/useRecipes";
 import { html, component, useEffect } from "haunted";
-import { useToast } from "../hooks/useToast";
+import "./recipe-card.ts";
 
 export const InnerApp = (element: HTMLElement) => {
   const { recipes } = useRecipes();
-  const { toast } = useToast(element);
-
-  useEffect(() => {
-    toast.success("Testing");
-
-    setTimeout(() => {
-      toast.error("Testing2");
-    }, 2000);
-  }, []);
 
   return html`
     <main>
-      <h2>App</h2>
-      ${recipes.map(
-        (recipe) => html` <p>${recipe.ingredients.join(", ")}</p> `,
-      )}
+      <div class="column">
+        <ul>
+          ${recipes.map(
+            (recipe) =>
+              html`<li>
+                <recipe-card .recipe=${recipe}></recipe-card>
+              </li> `,
+          )}
+        </ul>
+      </div>
     </main>
+
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .column {
+        max-width: 1240px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+    </style>
   `;
 };
 
