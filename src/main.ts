@@ -1,10 +1,12 @@
 import "./style.css";
 import { html, component } from "haunted";
 import "./components/inner-app.ts";
-import "./components/shopping-list-provider.ts";
 import "./components/toast-wrapper.ts";
 import "./components/icon-component.ts";
-import type { ShoppingListContextType } from "./utils/types.ts";
+import type {
+  RecipesContextType,
+  ShoppingListContextType,
+} from "./utils/types.ts";
 
 function App() {
   return html`
@@ -17,7 +19,7 @@ function App() {
               return html`
                 <recipes-wrapper>
                   <recipes-consumer
-                    .render=${(c: ShoppingListContextType) => {
+                    .render=${(c: RecipesContextType) => {
                       // Make sure context is available before rendering inner app
                       if (c) {
                         return html`<inner-app></inner-app>`;
