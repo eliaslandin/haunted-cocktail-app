@@ -27,7 +27,12 @@ export const ShoppingList = (element: HTMLElement) => {
                   (recipe) => html`
                     <li>
                       ${recipe.name}
-                      <button @click=${() => handleRemove(recipe)}>x</button>
+                      <button @click=${() => handleRemove(recipe)}>
+                        <icon-component
+                          class="icon"
+                          .type=${"x"}
+                        ></icon-component>
+                      </button>
                     </li>
                   `,
                 )}
@@ -110,6 +115,30 @@ export const ShoppingList = (element: HTMLElement) => {
         width: 100%;
         color: var(--secondary);
         font-size: var(--text-base);
+      }
+
+      button {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #f5f5f9;
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        color: var(--muted);
       }
     </style>
   `;
