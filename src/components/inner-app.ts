@@ -2,6 +2,7 @@ import { useRecipes } from "../hooks/useRecipes";
 import { html, component, useState } from "haunted";
 import "./recipe-card.ts";
 import "./search-bar.ts";
+import "./shopping-list.ts";
 
 export const InnerApp = () => {
   const [searchTerm, setSearchTerm] = useState<string>();
@@ -10,15 +11,18 @@ export const InnerApp = () => {
   return html`
     <main>
       <div class="column">
-        <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
-        <ul>
-          ${recipes.map(
-            (recipe) =>
-              html`<li>
-                <recipe-card .recipe=${recipe}></recipe-card>
-              </li> `,
-          )}
-        </ul>
+        <div>
+          <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
+          <ul>
+            ${recipes.map(
+              (recipe) =>
+                html`<li>
+                  <recipe-card .recipe=${recipe}></recipe-card>
+                </li> `,
+            )}
+          </ul>
+        </div>
+        <shopping-list></shopping-list>
       </div>
     </main>
 
@@ -33,6 +37,8 @@ export const InnerApp = () => {
       .column {
         width: 100%;
         max-width: 1240px;
+        display: flex;
+        gap: 34px;
       }
 
       ul {

@@ -6,6 +6,9 @@
   --muted: #8b8484;
   --border: #c9c9c9;
   --shadow: 0 0 18px rgba(0, 0, 0, 0.12);
+  --radius-sm: 4px;
+  --text-lg: 1.375rem;
+  --text-base: 1.125rem;
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -25,41 +28,4 @@
 body {
   margin: 0;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2rem;
-  line-height: 1;
-}
-
-h2 {
-  font-size: 1.375rem;
-  font-weight: normal;
-  line-height: 1;
-}
-
-h3 {
-  font-size: 1.125rem;
-  font-weight: normal;
-  line-height: 1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--primary);
-  cursor: pointer;
-}
-
-button:hover {
-  border-color: var(--primary-dark);
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
