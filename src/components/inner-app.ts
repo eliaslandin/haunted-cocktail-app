@@ -24,11 +24,18 @@ export const InnerApp = (element: HTMLElement) => {
   return html`
     <main>
       <div class="column">
-        <div>
-          <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
-          <recipe-list .recipes=${recipes}></recipe-list>
+        <header>
+          <h1>haunted</h1>
+          <icon-component class="icon" .type=${"ghost"}></icon-component>
+          <h1>cocktails</h1>
+        </header>
+        <div class="flex-container">
+          <div>
+            <search-bar .setSearchTerm=${setSearchTerm}></search-bar>
+            <recipe-list .recipes=${recipes}></recipe-list>
+          </div>
+          <shopping-list></shopping-list>
         </div>
-        <shopping-list></shopping-list>
       </div>
     </main>
 
@@ -44,11 +51,31 @@ export const InnerApp = (element: HTMLElement) => {
       .column {
         width: 100%;
         max-width: 1240px;
+      }
+
+      header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin: 16px 0;
+        opacity: 0.2;
+      }
+
+      header h1 {
+        font-size: var(--text-lg);
+        color: var(--primary);
+        font-weight: normal;
+        line-height: 1;
+        margin: 0;
+      }
+
+      .flex-container {
         display: flex;
         gap: 34px;
       }
 
-      .column > div {
+      .flex-container > div {
         flex: 1;
       }
 
