@@ -1,5 +1,4 @@
 import { component, html } from "haunted";
-import type { Recipe } from "../utils/types";
 import { useRecipes } from "../hooks/useRecipes";
 
 export const RecipeList = () => {
