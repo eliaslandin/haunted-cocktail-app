@@ -79,7 +79,7 @@ export const InnerApp = (element: HTMLElement) => {
       }
 
       @media screen and (max-width: 900px) {
-        .column {
+        .flex-container {
           flex-direction: column;
         }
       }
