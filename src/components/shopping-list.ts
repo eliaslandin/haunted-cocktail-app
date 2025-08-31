@@ -176,6 +176,7 @@ export const ShoppingList = (element: HTMLElement) => {
       }
 
       .print-btn:disabled {
+        pointer-events: none;
         border-color: var(--border);
         color: var(--border);
         cursor: default;
