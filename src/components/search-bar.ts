@@ -26,7 +26,7 @@ export const SearchBar = (element: HTMLElement) => {
   };
 
   return html`
-    <form @submit=${handleSearch}>
+    <form @submit=${handleSearch} autocomplete="off">
       <input name="query" type="search" placeholder="Search cocktail..." />
       <button>Search</button>
     </form>
